@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelance Jobs - AChart Path</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-chart-line me-2"></i>AChart Path
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="government-policies.html">Government Policies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">College Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="freelance.html">Freelance Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.html">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="support.html">Support</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dark-mode-toggle me-3 text-white" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <a href="login.html" class="btn btn-outline-light me-2">Login</a>
+                    <a href="register.html" class="btn btn-light">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-white text-center py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-lg-start" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold mb-4">Freelance Opportunities</h1>
+                    <p class="lead mb-4">Find freelance jobs that match your skills and earn while you learn. Connect with clients looking for student talent.</p>
+                    <div class="d-flex flex-wrap gap-2 justify-content-lg-start justify-content-center">
+                        <a href="#job-listings" class="btn btn-light btn-lg">Browse Jobs</a>
+                        <a href="#post-job" class="btn btn-outline-light btn-lg">Post a Job</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
+                    <img src="../../assets/images/freelance-hero.svg" alt="Freelance Illustration" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Job Categories -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Job Categories</h2>
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-primary text-white rounded-circle mb-3">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h5 class="card-title">Web Development</h5>
+                            <p class="card-text">Frontend, backend, and full-stack development projects.</p>
+                            <a href="#" class="btn btn-outline-primary mt-3">View Jobs</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-primary text-white rounded-circle mb-3">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h5 class="card-title">Design</h5>
+                            <p class="card-text">Graphic design, UI/UX, and creative projects.</p>
+                            <a href="#" class="btn btn-outline-primary mt-3">View Jobs</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-primary text-white rounded-circle mb-3">
+                                <i class="fas fa-pen"></i>
+                            </div>
+                            <h5 class="card-title">Content Writing</h5>
+                            <p class="card-text">Blog posts, articles, and copywriting projects.</p>
+                            <a href="#" class="btn btn-outline-primary mt-3">View Jobs</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon bg-primary text-white rounded-circle mb-3">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5 class="card-title">Marketing</h5>
+                            <p class="card-text">Digital marketing, SEO, and social media projects.</p>
+                            <a href="#" class="btn btn-outline-primary mt-3">View Jobs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Listings -->
+    <section class="py-5 bg-light" id="job-listings">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 data-aos="fade-up">Latest Freelance Jobs</h2>
+                <div class="d-flex">
+                    <div class="input-group me-2" style="width: 250px;">
+                        <input type="text" class="form-control" placeholder="Search jobs...">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filter
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                            <li><a class="dropdown-item" href="#">All Categories</a></li>
+                            <li><a class="dropdown-item" href="#">Web Development</a></li>
+                            <li><a class="dropdown-item" href="#">Design</a></li>
+                            <li><a class="dropdown-item" href="#">Content Writing</a></li>
+                            <li><a class="dropdown-item" href="#">Marketing</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-primary">Web Development</span>
+                                <span class="text-muted"><i class="far fa-clock me-1"></i> Posted 2 days ago</span>
+                            </div>
+                            <h4 class="card-title">WordPress Website Development</h4>
+                            <p class="card-text">Looking for a skilled WordPress developer to create a responsive e-commerce website with custom features and WooCommerce integration.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div>
+                                    <span class="badge bg-light text-dark me-2">$500-$1000</span>
+                                    <span class="badge bg-light text-dark">2-3 weeks</span>
+                                </div>
+                                <a href="#" class="btn btn-primary">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-primary">Design</span>
+                                <span class="text-muted"><i class="far fa-clock me-1"></i> Posted 1 day ago</span>
+                            </div>
+                            <h4 class="card-title">Logo and Brand Identity Design</h4>
+                            <p class="card-text">Seeking a creative designer to develop a modern logo and brand identity for a new tech startup. Includes logo, color palette, and basic brand guidelines.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div>
+                                    <span class="badge bg-light text-dark me-2">$300-$500</span>
+                                    <span class="badge bg-light text-dark">1-2 weeks</span>
+                                </div>
+                                <a href="#" class="btn btn-primary">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-primary">Content Writing</span>
+                                <span class="text-muted"><i class="far fa-clock me-1"></i> Posted 3 days ago</span>
+                            </div>
+                            <h4 class="card-title">Educational Blog Content Writer</h4>
+                            <p class="card-text">Looking for a knowledgeable writer to create 10 educational blog posts about various college majors and career paths. Each article should be 1500-2000 words.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div>
+                                    <span class="badge bg-light text-dark me-2">$200-$400</span>
+                                    <span class="badge bg-light text-dark">1 month</span>
+                                </div>
+                                <a href="#" class="btn btn-primary">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="badge bg-primary">Marketing</span>
+                                <span class="text-muted"><i class="far fa-clock me-1"></i> Posted 4 days ago</span>
+                            </div>
+                            <h4 class="card-title">Social Media Marketing Campaign</h4>
+                            <p class="card-text">Seeking a social media marketer to plan and execute a 2-month campaign for a new educational app. Includes content creation, scheduling, and performance analysis.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-4">
+                                <div>
+                                    <span class="badge bg-light text-dark me-2">$600-$800</span>
+                                    <span class="badge bg-light text-dark">2 months</span>
+                                </div>
+                                <a href="#" class="btn btn-primary">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-lg btn-primary">View More Jobs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post a Job Section -->
+    <section class="py-5" id="post-job">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2 class="mb-4">Need to Hire Freelancers?</h2>
+                    <p class="lead mb-5">Post your job and connect with talented students and professionals who can help bring your projects to life.</p>
+                    <a href="#" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#postJobModal">Post a Job</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Job Modal -->
+    <div class="modal fade" id="postJobModal" tabindex="-1" aria-labelledby="postJobModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="postJobModalLabel">Post a Freelance Job</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="jobTitle" class="form-label">Job Title</label>
+                                <input type="text" class="form-control" id="jobTitle" required>
+                                <div class="invalid-feedback">
+                                    Please provide a job title.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="jobCategory" class="form-label">Category</label>
+                                <select class="form-select" id="jobCategory" required>
+                                    <option value="" selected disabled>Select category</option>
+                                    <option value="web">Web Development</option>
+                                    <option value="design">Design</option>
+                                    <option value="writing">Content Writing</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a category.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="minBudget" class="form-label">Minimum Budget ($)</label>
+                                <input type="number" class="form-control" id="minBudget" required>
+                                <div class="invalid-feedback">
+                                    Please provide a minimum budget.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="maxBudget" class="form-label">Maximum Budget ($)</label>
+                                <input type="number" class="form-control" id="maxBudget" required>
+                                <div class="invalid-feedback">
+                                    Please provide a maximum budget.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="duration" class="form-label">Project Duration</label>
+                                <select class="form-select" id="duration" required>
+                                    <option value="" selected disabled>Select duration</option>
+                                    <option value="less-than-week">Less than a week</option>
+                                    <option value="1-2-weeks">1-2 weeks</option>
+                                    <option value="2-4-weeks">2-4 weeks</option>
+                                    <option value="1-3-months">1-3 months</option>
+                                    <option value="3-6-months">3-6 months</option>
+                                    <option value="more-than-6">More than 6 months</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a duration.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="experienceLevel" class="form-label">Experience Level</label>
+                                <select class="form-select" id="experienceLevel" required>
+                                    <option value="" selected disabled>Select level</option>
+                                    <option value="beginner">Entry Level</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="expert">Expert</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select an experience level.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="jobDescription" class="form-label">Job Description</label>
+                                <textarea class="form-control" id="jobDescription" rows="5" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please provide a job description.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="skills" class="form-label">Required Skills (comma separated)</label>
+                                <input type="text" class="form-control" id="skills" required>
+                                <div class="invalid-feedback">
+                                    Please provide required skills.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="clientName" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="clientName" required>
+                                <div class="invalid-feedback">
+                                    Please provide your name.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="clientEmail" class="form-label">Your Email</label>
+                                <input type="email" class="form-control" id="clientEmail" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email.
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Post Job</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-4"><i class="fas fa-chart-line me-2"></i>AChart Path</h5>
+                    <p>Your comprehensive platform for educational resources, government policies, and career opportunities.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="../../index.html" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-white text-decoration-none">Courses</a></li>
+                        <li class="mb-2"><a href="events.html" class="text-white text-decoration-none">Events</a></li>
+                        <li class="mb-2"><a href="freelance.html" class="text-white text-decoration-none">Freelance</a></li>
+                        <li><a href="community.html" class="text-white text-decoration-none">Community</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-4">Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Tutorials</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">FAQs</a></li>
+                        <li><a href="support.html" class="text-white text-decoration-none">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates.</p>
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0">© 2023 AChart Path. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html> 

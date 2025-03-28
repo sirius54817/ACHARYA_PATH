@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - AChart Path</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">
+                <i class="fas fa-chart-line me-2"></i>AChart Path
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="government-policies.html">Government Policies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">College Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="freelance.html">Freelance Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="community.html">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="support.html">Support</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dark-mode-toggle me-3 text-white" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <a href="login.html" class="btn btn-outline-light me-2">Login</a>
+                    <a href="register.html" class="btn btn-light">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-white text-center py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-lg-start" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold mb-4">Join Our Community</h1>
+                    <p class="lead mb-4">Connect with students, professionals, and educators from around the world. Share knowledge, ask questions, and grow together.</p>
+                    <div class="d-flex flex-wrap gap-2 justify-content-lg-start justify-content-center">
+                        <a href="#forums" class="btn btn-light btn-lg">Browse Forums</a>
+                        <a href="#join" class="btn btn-outline-light btn-lg">Become a Member</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
+                    <img src="../../assets/images/community-hero.svg" alt="Community Illustration" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Community Stats -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body py-4">
+                            <div class="display-4 fw-bold mb-2 counter" data-target="15000">0</div>
+                            <p class="mb-0 text-muted">Community Members</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body py-4">
+                            <div class="display-4 fw-bold mb-2 counter" data-target="500">0</div>
+                            <p class="mb-0 text-muted">Discussion Topics</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body py-4">
+                            <div class="display-4 fw-bold mb-2 counter" data-target="120">0</div>
+                            <p class="mb-0 text-muted">Countries Represented</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body py-4">
+                            <div class="display-4 fw-bold mb-2 counter" data-target="25000">0</div>
+                            <p class="mb-0 text-muted">Questions Answered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Forums -->
+    <section class="py-5 bg-light" id="forums">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Popular Discussion Forums</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h5 class="card-title mb-0">Academic Discussions</h5>
+                            </div>
+                            <p class="card-text">Discuss academic topics, research papers, and educational theories with peers and professors.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-muted"><i class="fas fa-users me-1"></i> 5.2k members</span>
+                                <a href="#" class="btn btn-outline-primary">Join Forum</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h5 class="card-title mb-0">Coding & Technology</h5>
+                            </div>
+                            <p class="card-text">Share coding tips, discuss new technologies, and solve programming challenges together.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-muted"><i class="fas fa-users me-1"></i> 7.8k members</span>
+                                <a href="#" class="btn btn-outline-primary">Join Forum</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <h5 class="card-title mb-0">Career Guidance</h5>
+                            </div>
+                            <p class="card-text">Get advice on career paths, job applications, interviews, and professional development.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-muted"><i class="fas fa-users me-1"></i> 6.5k members</span>
+                                <a href="#" class="btn btn-outline-primary">Join Forum</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-landmark"></i>
+                                </div>
+                                <h5 class="card-title mb-0">Government Policies</h5>
+                            </div>
+                            <p class="card-text">Discuss educational policies, scholarships, and government initiatives for students.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-muted"><i class="fas fa-users me-1"></i> 4.3k members</span>
+                                <a href="#" class="btn btn-outline-primary">Join Forum</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h5 class="card-title mb-0">Study Abroad</h5>
+                            </div>
+                            <p class="card-text">Exchange information about studying abroad, visa processes, and international education.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-muted"><i class="fas fa-users me-1"></i> 5.9k members</span>
+                                <a href="#" class="btn btn-outline-primary">Join Forum</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h5 class="card-title mb-0">Learning Strategies</h5>
+                            </div>
+                            <p class="card-text">Share effective study techniques, time management tips, and learning resources.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="text-muted"><i class="fas fa-users me-1"></i> 6.1k members</span>
+                                <a href="#" class="btn btn-outline-primary">Join Forum</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Leaders -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Community Leaders</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card border-0 shadow-sm h-100 text-center">
+                        <div class="card-body p-4">
+                            <img src="../../assets/images/leader-1.jpg" alt="Community Leader" class="rounded-circle mb-3" width="120" height="120">
+                            <h5 class="card-title">Dr. Sarah Johnson</h5>
+                            <p class="text-muted mb-3">Academic Forum Moderator</p>
+                            <p class="card-text">Professor of Education with 15+ years of experience in educational research and policy development.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card border-0 shadow-sm h-100 text-center">
+                        <div class="card-body p-4">
+                            <img src="../../assets/images/leader-2.jpg" alt="Community Leader" class="rounded-circle mb-3" width="120" height="120">
+                            <h5 class="card-title">Michael Chen</h5>
+                            <p class="text-muted mb-3">Tech Forum Moderator</p>
+                            <p class="card-text">Software engineer and coding instructor with expertise in web development and AI technologies.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card border-0 shadow-sm h-100 text-center">
+                        <div class="card-body p-4">
+                            <img src="../../assets/images/leader-3.jpg" alt="Community Leader" class="rounded-circle mb-3" width="120" height="120">
+                            <h5 class="card-title">Priya Sharma</h5>
+                            <p class="text-muted mb-3">Career Forum Moderator</p>
+                            <p class="card-text">Career counselor and HR professional helping students navigate their professional journeys.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card border-0 shadow-sm h-100 text-center">
+                        <div class="card-body p-4">
+                            <img src="../../assets/images/leader-4.jpg" alt="Community Leader" class="rounded-circle mb-3" width="120" height="120">
+                            <h5 class="card-title">David Rodriguez</h5>
+                            <p class="text-muted mb-3">Study Abroad Moderator</p>
+                            <p class="card-text">International education consultant with experience in helping students study in multiple countries.</p>
+                            <div class="social-icons mt-3">
+                                <a href="#" class="me-2"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Community -->
+    <section class="py-5 bg-light" id="join">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="fade-up">
+                    <h2 class="mb-4">Become a Community Member</h2>
+                    <p class="lead mb-5">Join our growing community of learners, educators, and professionals. Registration is free and gives you access to all forums, resources, and community events.</p>
+                    <a href="register.html" class="btn btn-primary btn-lg">Register Now</a>
+                    <p class="mt-3">Already a member? <a href="login.html">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-4"><i class="fas fa-chart-line me-2"></i>AChart Path</h5>
+                    <p>Your comprehensive platform for educational resources, government policies, and career opportunities.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="../../index.html" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-white text-decoration-none">Courses</a></li>
+                        <li class="mb-2"><a href="events.html" class="text-white text-decoration-none">Events</a></li>
+                        <li class="mb-2"><a href="freelance.html" class="text-white text-decoration-none">Freelance</a></li>
+                        <li><a href="community.html" class="text-white text-decoration-none">Community</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="mb-4">Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Tutorials</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">FAQs</a></li>
+                        <li><a href="support.html" class="text-white text-decoration-none">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates.</p>
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-md-0">© 2023 AChart Path. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
+</body>
+</html> 

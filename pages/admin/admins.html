@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Admins - AChart Path</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark text-white" id="sidebar-wrapper" style="width: 250px;">
+            <div class="sidebar-heading p-3 border-bottom">
+                <a href="dashboard.html" class="text-white text-decoration-none">
+                    <i class="fas fa-chart-line me-2"></i>AChart Path
+                </a>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="dashboard.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+                <a href="users.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-users me-2"></i> Users
+                </a>
+                <a href="courses.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-graduation-cap me-2"></i> Courses
+                </a>
+                <a href="events.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-calendar-alt me-2"></i> Events
+                </a>
+                <a href="policies.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-landmark me-2"></i> Policies
+                </a>
+                <a href="jobs.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-briefcase me-2"></i> Jobs
+                </a>
+                <a href="community.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-comments me-2"></i> Community
+                </a>
+                <a href="support.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-headset me-2"></i> Support
+                </a>
+                <a href="admins.html" class="list-group-item list-group-item-action bg-dark text-white active">
+                    <i class="fas fa-user-shield me-2"></i> Admins
+                </a>
+                <a href="settings.html" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-cog me-2"></i> Settings
+                </a>
+            </div>
+        </div>
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper" style="width: calc(100% - 250px);">
+            <!-- Top Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+                <div class="container-fluid">
+                    <button class="btn btn-sm btn-outline-secondary" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="ms-auto d-flex align-items-center">
+                        <div class="dropdown">
+                            <a class="text-dark dropdown-toggle text-decoration-none" href="#" role="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell position-relative">
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        3
+                                    </span>
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                                <li><h6 class="dropdown-header">Notifications</h6></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">New user registration</a></li>
+                                <li><a class="dropdown-item" href="#">New course added</a></li>
+                                <li><a class="dropdown-item" href="#">Support ticket received</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-center" href="#">View all</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown ms-3">
+                            <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://via.placeholder.com/40" alt="Admin" class="rounded-circle me-2" width="32" height="32">
+                                <span class="d-none d-sm-inline" id="adminName">Admin</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user-circle me-2"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" onclick="adminLogout()"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Admin Management Content -->
+            <div class="container-fluid p-4">
+                <div class="row mb-4">
+                    <div class="col">
+                        <h2 class="fw-bold">Manage Administrators</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="dashboard.html">Admin</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Administrators</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAdminModal">
+                            <i class="fas fa-plus me-2"></i>Add New Admin
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Admin List -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Administrator List</h5>
+                            <div class="input-group" style="width: 300px;">
+                                <input type="text" class="form-control" placeholder="Search admins...">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Last Login</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://via.placeholder.com/40" alt="Admin" class="rounded-circle me-2" width="32" height="32">
+                                                <div>
+                                                    <h6 class="mb-0">John Smith</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>john.smith@achartpath.com</td>
+                                        <td>Super Admin</td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td>Today, 09:45 AM</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-danger" disabled>
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://via.placeholder.com/40" alt="Admin" class="rounded-circle me-2" width="32" height="32">
+                                                <div>
+                                                    <h6 class="mb-0">Sarah Johnson</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>sarah.johnson@achartpath.com</td>
+                                        <td>Content Admin</td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td>Yesterday, 15:30 PM</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://via.placeholder.com/40" alt="Admin" class="rounded-circle me-2" width="32" height="32">
+                                                <div>
+                                                    <h6 class="mb-0">Michael Brown</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>michael.brown@achartpath.com</td>
+                                        <td>Support Admin</td>
+                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td>Jun 15, 2023</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="https://via.placeholder.com/40" alt="Admin" class="rounded-circle me-2" width="32" height="32">
+                                                <div>
+                                                    <h6 class="mb-0">Emily Davis</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>emily.davis@achartpath.com</td>
+                                        <td>Events Admin</td>
+                                        <td><span class="badge bg-warning">Inactive</span></td>
+                                        <td>Jun 10, 2023</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Admin Modal -->
+    <div class="modal fade" id="addAdminModal" tabindex="-1" aria-labelledby="addAdminModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAdminModalLabel">Add New Administrator</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addAdminForm" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label for="adminName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="adminName" placeholder="Enter full name" required>
+                            <div class="invalid-feedback">
+                                Please enter a name.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adminEmail" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="adminEmail" placeholder="Enter email address" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adminPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="adminPassword" placeholder="Enter password" required minlength="8">
+                            <div class="invalid-feedback">
+                                Password must be at least 8 characters long.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adminRole" class="form-label">Admin Role</label>
+                            <select class="form-select" id="adminRole" required>
+                                <option value="" selected disabled>Select a role</option>
+                                <option value="super_admin">Super Admin</option>
+                                <option value="content_admin">Content Admin</option>
+                                <option value="support_admin">Support Admin</option>
+                                <option value="events_admin">Events Admin</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a role.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="sendInvitation" checked>
+                                <label class="form-check-label" for="sendInvitation">
+                                    Send invitation email
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="addNewAdmin()">Add Administrator</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Toggle sidebar
+        document.getElementById('sidebarToggle').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('wrapper').classList.toggle('toggled');
+        });
+        
+        // Set admin name from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminEmail = localStorage.getItem('adminEmail');
+            if (adminEmail) {
+                document.getElementById('adminName').textContent = adminEmail.split('@')[0];
+            }
+        });
+        
+        // Admin logout function
+        function adminLogout() {
+            localStorage.removeItem('isAdminLoggedIn');
+            localStorage.removeItem('adminEmail');
+            window.location.href = 'login.html';
+        }
+        
+        // Add new admin function
+        function addNewAdmin() {
+            const form = document.getElementById('addAdminForm');
+            
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+                form.classList.add('was-validated');
+                return;
+            }
+            
+            // Get form values
+            const name = document.getElementById('adminName').value;
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            const role = document.getElementById('adminRole').value;
+            const sendInvitation = document.getElementById('sendInvitation').checked;
+            
+            // Here you would typically send this data to your server
+            console.log('Adding new admin:', { name, email, role, sendInvitation });
+            
+            // For demo purposes, show success message and close modal
+            alert(`Administrator ${name} has been added successfully.`);
+            
+            // Close modal and reset form
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addAdminModal'));
+            modal.hide();
+            form.reset();
+            form.classList.remove('was-validated');
+        }
+    </script>
+</body>
+</html> 
