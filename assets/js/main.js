@@ -92,6 +92,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Dark mode toggle
     initDarkMode();
+    
+    // Check authentication status if on a page that requires it
+    if (window.location.pathname.includes('/user/') || window.location.pathname.includes('/admin/')) {
+        checkAuthStatus();
+    }
+    
+    // Logout link handler
+    const logoutLinks = document.querySelectorAll('.logout-link');
+    if (logoutLinks) {
+        logoutLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                logout();
+            });
+        });
+    }
 });
 
 // Dark mode functions
@@ -139,67 +155,69 @@ function updateDarkModeIcon(isDark) {
     });
 }
 
-// Login and Registration Form Handling
-function handleLogin(event) {
-    event.preventDefault();
-    
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    
-    // Here you would typically send this data to your server
-    console.log('Login attempt:', { email, password });
-    
-    // For demo purposes, simulate a successful login
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userEmail', email);
-    
-    // Redirect based on user type (this is simplified)
-    if (email.includes('admin')) {
-        window.location.href = '../admin/dashboard.html';
-    } else {
-        window.location.href = '../user/dashboard.html';
-    }
-}
-
-function handleRegistration(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('registerName').value;
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-    
-    // Here you would typically send this data to your server
-    console.log('Registration attempt:', { name, email, password });
-    
-    // For demo purposes, simulate a successful registration
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userName', name);
-    localStorage.setItem('userEmail', email);
-    
-    // Redirect to user dashboard
-    window.location.href = '../user/dashboard.html';
-}
-
-// Check if user is logged in
+// Authentication
 function checkAuthStatus() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const authButtons = document.querySelector('.auth-buttons');
-    const userMenu = document.querySelector('.user-menu');
+    // Skip auth check for login and register pages
+    if (window.location.pathname.includes('/login.html') || 
+        window.location.pathname.includes('/register.html')) {
+        return true;
+    }
     
-    if (isLoggedIn && authButtons && userMenu) {
-        const userEmail = localStorage.getItem('userEmail');
-        document.getElementById('userEmail').textContent = userEmail;
-        
-        authButtons.classList.add('d-none');
-        userMenu.classList.remove('d-none');
+    // Use the isLoggedIn function from auth.js if available
+    if (typeof isLoggedIn === 'function') {
+        if (!isLoggedIn()) {
+            // Redirect to login page with the current URL as the redirect target
+            window.location.href = '../user/login.html?redirect=' + encodeURIComponent(window.location.href);
+            return false;
+        }
+    } else {
+        // Fallback to local implementation
+        const localIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true' && localStorage.getItem('token');
+        if (!localIsLoggedIn) {
+            window.location.href = '../user/login.html?redirect=' + encodeURIComponent(window.location.href);
+            return false;
+        }
+    }
+    
+    // Update user info in navbar if present
+    const userNameEl = document.querySelector('.user-name');
+    if (userNameEl) {
+        userNameEl.textContent = localStorage.getItem('userName') || 'User';
+    }
+    
+    const userEmailEl = document.querySelector('.user-email');
+    if (userEmailEl) {
+        userEmailEl.textContent = localStorage.getItem('userEmail') || '';
+    }
+    
+    // Check for role-specific elements
+    const adminElements = document.querySelectorAll('.admin-only');
+    const userRole = localStorage.getItem('userRole') || 'user';
+    
+    if (adminElements.length > 0) {
+        if (userRole === 'admin') {
+            adminElements.forEach(el => el.classList.remove('d-none'));
+        } else {
+            adminElements.forEach(el => el.classList.add('d-none'));
+        }
     }
 }
 
 // Logout function
 function logout() {
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('userEmail');
-    localStorage.removeItem('userName');
+    // Use the clearUserSession function from auth.js if available
+    if (typeof clearUserSession === 'function') {
+        clearUserSession();
+    } else {
+        // Fallback implementation
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
+        localStorage.removeItem('userRole');
+    }
     
+    // Redirect to home page
     window.location.href = '../../index.html';
 } 

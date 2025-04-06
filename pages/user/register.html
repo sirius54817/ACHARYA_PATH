@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - AChart Path</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .register-container {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        .register-card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background: var(--bs-body-bg);
+        }
+        .register-header {
+            padding: 2rem;
+            text-align: center;
+            background: var(--bs-primary);
+            color: white;
+        }
+        .register-body {
+            padding: 2rem;
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+        }
+        .btn-register {
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            font-weight: 600;
+        }
+        .register-footer {
+            text-align: center;
+            padding: 1rem;
+            border-top: 1px solid var(--bs-border-color);
+        }
+        .register-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="register-page py-5">
+        <div class="container">
+            <div class="register-container" data-aos="fade-up">
+                <div class="register-card">
+                    <div class="register-header">
+                        <h2 class="mb-0">
+                            <i class="fas fa-chart-line me-2"></i>AChart Path
+                        </h2>
+                        <p class="mb-0 mt-2">Create a new account</p>
+                    </div>
+                    <div class="register-body">
+                        <div id="registerError" class="alert alert-danger d-none" role="alert">
+                            An error occurred. Please try again.
+                        </div>
+                        <div id="registerSuccess" class="alert alert-success d-none" role="alert">
+                            Registration successful! Redirecting to login...
+                        </div>
+                        <form id="registerForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input type="text" class="form-control" id="firstName" placeholder="First name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Last name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="password" placeholder="Create a password" required>
+                                </div>
+                                <div class="form-text">Password must be at least 8 characters long.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+                                </div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">
+                                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-register">Create Account</button>
+                        </form>
+                    </div>
+                    <div class="register-footer">
+                        <p class="mb-0">Already have an account? <a href="login.html">Sign in</a></p>
+                        <p class="mt-2 mb-0"><a href="../../index.html">Back to Home</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Auth JS -->
+    <script src="../../assets/js/auth.js"></script>
+    <!-- Custom JS -->
+    <script src="../../assets/js/main.js"></script>
+    <!-- ACHARYA Chatbot -->
+    <script src="../../assets/js/acharya-bot.js"></script>
+    <!-- Register JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+            
+            // Handle form submission
+            const registerForm = document.getElementById('registerForm');
+            const registerError = document.getElementById('registerError');
+            const registerSuccess = document.getElementById('registerSuccess');
+            
+            registerForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const termsCheck = document.getElementById('termsCheck').checked;
+                
+                // Reset alerts
+                registerError.classList.add('d-none');
+                registerSuccess.classList.add('d-none');
+                
+                // Simple validation
+                if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                    registerError.textContent = 'Please fill in all fields.';
+                    registerError.classList.remove('d-none');
+                    return;
+                }
+                
+                if (password.length < 8) {
+                    registerError.textContent = 'Password must be at least 8 characters long.';
+                    registerError.classList.remove('d-none');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    registerError.textContent = 'Passwords do not match.';
+                    registerError.classList.remove('d-none');
+                    return;
+                }
+                
+                if (!termsCheck) {
+                    registerError.textContent = 'You must agree to the Terms of Service and Privacy Policy.';
+                    registerError.classList.remove('d-none');
+                    return;
+                }
+                
+                try {
+                    // Prepare user data
+                    const userData = {
+                        name: `${firstName} ${lastName}`,
+                        email: email,
+                        password: password
+                    };
+                    
+                    // Send registration request to the backend API
+                    await registerUser(userData);
+                    
+                    // Show success message
+                    registerSuccess.classList.remove('d-none');
+                    
+                    // Reset form
+                    registerForm.reset();
+                    
+                    // Redirect to login page after a delay
+                    setTimeout(function() {
+                        // Clean login URL to prevent any redirect loops
+                        window.location.href = 'login.html';
+                    }, 3000);
+                } catch (error) {
+                    // Show error message
+                    registerError.textContent = error.message || 'Registration failed. Please try again.';
+                    registerError.classList.remove('d-none');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
