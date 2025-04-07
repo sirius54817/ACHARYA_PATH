@@ -98,7 +98,7 @@
                                 <i class="fas fa-book-open"></i>
                             </div>
                             <h5 class="card-title">Courses</h5>
-                            <p class="display-4 fw-bold mb-0">3</p>
+                            <p class="display-4 fw-bold mb-0" id="progressCourses">0</p>
                             <p class="text-muted">In Progress</p>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                                 <i class="fas fa-certificate"></i>
                             </div>
                             <h5 class="card-title">Certificates</h5>
-                            <p class="display-4 fw-bold mb-0">2</p>
+                            <p class="display-4 fw-bold mb-0" id="progressCertificates">0</p>
                             <p class="text-muted">Earned</p>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                                 <i class="fas fa-calendar-check"></i>
                             </div>
                             <h5 class="card-title">Events</h5>
-                            <p class="display-4 fw-bold mb-0">5</p>
+                            <p class="display-4 fw-bold mb-0" id="progressEvents">0</p>
                             <p class="text-muted">Registered</p>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                                 <i class="fas fa-briefcase"></i>
                             </div>
                             <h5 class="card-title">Jobs</h5>
-                            <p class="display-4 fw-bold mb-0">2</p>
+                            <p class="display-4 fw-bold mb-0" id="progressJobs">0</p>
                             <p class="text-muted">Applied</p>
                         </div>
                     </div>
@@ -400,6 +400,9 @@
                 document.getElementById('welcomeUserName').textContent = storedName;
             }
             
+            // Load user progress data
+            loadUserProgress();
+            
             // Logout functionality
             document.getElementById('logoutBtn').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -415,6 +418,77 @@
             if (!isLoggedIn) {
                 window.location.href = '../public/login.html?redirect=' + encodeURIComponent(window.location.href);
             }
+        }
+        
+        // Load user progress from localStorage or initialize with default values
+        function loadUserProgress() {
+            // Try to get progress data from localStorage
+            const progressData = JSON.parse(localStorage.getItem('userProgress')) || {
+                courses: Math.floor(Math.random() * 5) + 1,  // Random value between 1-5
+                certificates: Math.floor(Math.random() * 3),  // Random value between 0-2
+                events: Math.floor(Math.random() * 6) + 1,   // Random value between 1-6
+                jobs: Math.floor(Math.random() * 3)          // Random value between 0-2
+            };
+            
+            // If no data exists, initialize it
+            if (!localStorage.getItem('userProgress')) {
+                localStorage.setItem('userProgress', JSON.stringify(progressData));
+            }
+            
+            // Update the UI with the progress data
+            document.getElementById('progressCourses').textContent = progressData.courses;
+            document.getElementById('progressCertificates').textContent = progressData.certificates;
+            document.getElementById('progressEvents').textContent = progressData.events;
+            document.getElementById('progressJobs').textContent = progressData.jobs;
+            
+            // Add animation to the numbers
+            animateProgressNumbers('progressCourses', progressData.courses);
+            animateProgressNumbers('progressCertificates', progressData.certificates);
+            animateProgressNumbers('progressEvents', progressData.events);
+            animateProgressNumbers('progressJobs', progressData.jobs);
+        }
+        
+        // Function to update user progress
+        function updateUserProgress(type, value) {
+            // Get current progress
+            const progressData = JSON.parse(localStorage.getItem('userProgress')) || {};
+            
+            // Update the specified progress type
+            progressData[type] = value;
+            
+            // Save the updated progress
+            localStorage.setItem('userProgress', JSON.stringify(progressData));
+            
+            // Update the UI
+            document.getElementById('progress' + type.charAt(0).toUpperCase() + type.slice(1)).textContent = value;
+        }
+        
+        // Animate the progress numbers counting up
+        function animateProgressNumbers(elementId, targetNumber) {
+            const element = document.getElementById(elementId);
+            const duration = 1500; // animation duration in milliseconds
+            const frameDuration = 1000 / 60; // 60fps
+            const totalFrames = Math.round(duration / frameDuration);
+            let frame = 0;
+            
+            // Start from 0
+            element.textContent = '0';
+            
+            // Use requestAnimationFrame for smooth animation
+            const counter = setInterval(() => {
+                frame++;
+                const progress = frame / totalFrames;
+                const currentCount = Math.round(progress * targetNumber);
+                
+                // Update the count
+                element.textContent = currentCount;
+                
+                // If the animation is complete, ensure the final number is displayed
+                if (frame === totalFrames) {
+                    clearInterval(counter);
+                    element.textContent = targetNumber;
+                }
+            }, frameDuration);
         }
     </script>
 </body>

@@ -12,6 +12,60 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for government policies page */
+        .policy-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .policy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .policy-banner {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 60px 0;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .carousel-item {
+            height: 400px;
+        }
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .category-pills {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .timeline {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        #policyContainer .card {
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        #policyContainer .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -70,21 +124,337 @@
         </div>
     </nav>
 
+    <!-- Education Carousel -->
+    <div id="educationCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#educationCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#educationCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#educationCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="Education Image 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>National Education Policy 2020</h2>
+                    <p>Transforming India's education landscape with progressive reforms</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="Education Image 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>School Education Reforms</h2>
+                    <p>Creating a strong foundation with the new 5+3+3+4 structure</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="d-block w-100" alt="Education Image 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Higher Education Excellence</h2>
+                    <p>Building world-class multidisciplinary institutions across India</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#educationCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#educationCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
     <!-- Main Content -->
     <div class="container py-5">
-        <h1 class="mb-4">Government Policies</h1>
-        <div class="row g-4">
-            <!-- Policy Cards -->
-            <div class="col-md-6" data-aos="fade-up">
-                <div class="card h-100 border-0 shadow-sm">
+        <h1 class="mb-4 text-center">Government Education Policies</h1>
+        
+        <!-- National Education Policy Banner -->
+        <div class="card bg-light mb-4 shadow" data-aos="fade-up">
+            <div class="card-body d-flex align-items-center">
+                <img src="https://www.education.gov.in/sites/upload_files/mhrd/files/nep_emblem.png" alt="Ministry of Education" height="60" class="me-3">
+                <div>
+                    <h5 class="mb-0">National Education Policy 2020</h5>
+                    <p class="mb-0 text-muted">Information sourced from the Ministry of Education, Government of India</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Policy Categories -->
+        <div class="category-pills" data-aos="fade-up">
+            <ul class="nav nav-pills justify-content-center" id="policyCategories">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" data-category="all">All Policies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-category="school">School Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-category="higher">Higher Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-category="teachers">Teacher Education</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-category="vocational">Vocational Education</a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- NEP Overview -->
+        <div class="row mb-5" data-aos="fade-up">
+            <div class="col-12">
+                <div class="card border-0 shadow">
                     <div class="card-body">
-                        <h5 class="card-title">National Education Policy 2020</h5>
-                        <p class="card-text">The National Education Policy 2020 aims to transform India's education system by 2040. Learn about the key changes and how they affect students.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <h4 class="card-title mb-3">National Education Policy 2020 - Overview</h4>
+                        <p class="lead">A comprehensive framework to guide the development of education in India</p>
+                        <p>The National Education Policy 2020 (NEP 2020) was approved by the Union Cabinet of India on 29 July 2020 and outlines the vision of India's new education system. The new policy replaces the previous National Policy on Education, 1986 and aims to transform India's education system by 2040.</p>
+                        <div class="row g-4 mt-2">
+                            <div class="col-md-4">
+                                <div class="d-flex">
+                                    <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Universal Access</h5>
+                                        <p class="small text-muted">Ensuring inclusive and equitable quality education for all</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-flex">
+                                    <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Holistic Development</h5>
+                                        <p class="small text-muted">Focus on cognitive, social, emotional and physical development</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="d-flex">
+                                    <div class="feature-icon bg-primary text-white rounded-circle me-3">
+                                        <i class="fas fa-globe-asia"></i>
+                                    </div>
+                                    <div>
+                                        <h5>Global Standards</h5>
+                                        <p class="small text-muted">Education aligned with 21st century needs and SDG4</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end mt-3">
+                            <a href="https://www.education.gov.in/sites/upload_files/mhrd/files/NEP_Final_English_0.pdf" target="_blank" class="btn btn-primary">Download Full Policy (PDF)</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- More policy cards... -->
+        </div>
+        
+        <div class="row g-4" id="policyContainer">
+            <!-- Policy Cards -->
+            <div class="col-md-6 policy-item" data-aos="fade-up" data-category="school">
+                <div class="card policy-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-primary">School Education</span>
+                        </div>
+                        <h5 class="card-title">New Pedagogical Structure (5+3+3+4)</h5>
+                        <p class="card-text">The policy introduces a new pedagogical structure replacing the existing 10+2 structure with a 5+3+3+4 structure corresponding to ages 3-8, 8-11, 11-14, and 14-18 years. This includes:</p>
+                        <ul>
+                            <li>Foundational Stage (3-8 years): 3 years of pre-school and grades 1-2</li>
+                            <li>Preparatory Stage (8-11 years): Grades 3-5</li>
+                            <li>Middle Stage (11-14 years): Grades 6-8</li>
+                            <li>Secondary Stage (14-18 years): Grades 9-12</li>
+                        </ul>
+                        <a href="https://www.education.gov.in/national-education-policy-2020-0" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 policy-item" data-aos="fade-up" data-category="school">
+                <div class="card policy-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-primary">School Education</span>
+                        </div>
+                        <h5 class="card-title">Early Childhood Care and Education (ECCE)</h5>
+                        <p class="card-text">The policy emphasizes the critical importance of early years (age 3-6) by including it in the formal education structure. Key points include:</p>
+                        <ul>
+                            <li>Universal access to ECCE to ensure all students are school-ready</li>
+                            <li>ECCE will be delivered through a significantly expanded and strengthened system of institutions</li>
+                            <li>Prior to the age of 5, ECCE will consist of flexible, multi-level, play-based, activity-based, and inquiry-based learning</li>
+                            <li>A National Curricular and Pedagogical Framework for Early Childhood Care and Education (NCPFECCE) will be developed by NCERT</li>
+                        </ul>
+                        <a href="https://www.education.gov.in/national-education-policy-2020-0" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 policy-item" data-aos="fade-up" data-category="higher">
+                <div class="card policy-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-success">Higher Education</span>
+                        </div>
+                        <h5 class="card-title">Higher Education Restructuring</h5>
+                        <p class="card-text">The policy proposes significant restructuring of higher education institutions with a vision to create vibrant multidisciplinary institutions. Key reforms include:</p>
+                        <ul>
+                            <li>Moving towards multidisciplinary universities and colleges with 3,000+ students</li>
+                            <li>Phasing out single-stream institutions over time</li>
+                            <li>All universities and colleges to aim to become multidisciplinary by 2040</li>
+                            <li>Multiple entry and exit options with appropriate certification</li>
+                            <li>Undergraduate degrees can be of 3 or 4 years duration</li>
+                            <li>Academic Bank of Credit for storing academic credits earned</li>
+                        </ul>
+                        <a href="https://www.education.gov.in/national-education-policy-2020-0" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 policy-item" data-aos="fade-up" data-category="higher">
+                <div class="card policy-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-success">Higher Education</span>
+                        </div>
+                        <h5 class="card-title">Regulatory Framework Reforms</h5>
+                        <p class="card-text">The policy proposes significant changes to the regulatory system of higher education:</p>
+                        <ul>
+                            <li>Establishment of a single regulator for higher education - the Higher Education Commission of India (HECI)</li>
+                            <li>The HECI will have four independent verticals:
+                                <ul>
+                                    <li>National Higher Education Regulatory Council (NHERC)</li>
+                                    <li>National Accreditation Council (NAC)</li>
+                                    <li>Higher Education Grants Council (HEGC)</li>
+                                    <li>General Education Council (GEC)</li>
+                                </ul>
+                            </li>
+                            <li>Common entrance exams for university admissions to be conducted by the National Testing Agency</li>
+                        </ul>
+                        <a href="https://www.education.gov.in/national-education-policy-2020-0" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 policy-item" data-aos="fade-up" data-category="teachers">
+                <div class="card policy-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-danger">Teacher Education</span>
+                        </div>
+                        <h5 class="card-title">Teacher Education Reforms</h5>
+                        <p class="card-text">The policy recognizes teachers as the heart of the learning process and proposes major reforms in teacher preparation:</p>
+                        <ul>
+                            <li>By 2030, the minimum degree qualification for teaching will be a 4-year integrated B.Ed. degree</li>
+                            <li>All teacher education programs will be moved into multidisciplinary universities and colleges</li>
+                            <li>A new National Curriculum Framework for Teacher Education (NCFTE) will be formulated by the NCTE</li>
+                            <li>A National Mission for Mentoring will be established</li>
+                            <li>A robust merit-based structure of tenure, promotion, and salary structure will be developed</li>
+                        </ul>
+                        <a href="https://www.education.gov.in/national-education-policy-2020-0" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 policy-item" data-aos="fade-up" data-category="vocational">
+                <div class="card policy-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-warning text-dark">Vocational Education</span>
+                        </div>
+                        <h5 class="card-title">Vocational Education Integration</h5>
+                        <p class="card-text">The policy aims to integrate vocational education into mainstream education:</p>
+                        <ul>
+                            <li>Vocational education will be integrated into all school and higher education institutions in a phased manner</li>
+                            <li>By 2025, at least 50% of learners shall have exposure to vocational education</li>
+                            <li>A 10-day bagless period during grades 6-8 to learn vocational crafts from local artisans</li>
+                            <li>NCIVE, established under NCERT, will develop National Skills Qualifications Framework</li>
+                            <li>Higher education institutions will offer vocational courses integrated with the general education curriculum</li>
+                        </ul>
+                        <a href="https://www.education.gov.in/national-education-policy-2020-0" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 policy-item" data-aos="fade-up" data-category="school">
+                <div class="card policy-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-primary">School Education</span>
+                        </div>
+                        <h5 class="card-title">Medium of Instruction and Language Policy</h5>
+                        <p class="card-text">The policy emphasizes mother tongue/local language as the medium of instruction at least until grade 5, preferably till grade 8 and beyond:</p>
+                        <ul>
+                            <li>Focus on mother tongue/local language/regional language as medium of instruction</li>
+                            <li>Three-language formula to continue with greater flexibility</li>
+                            <li>No language will be imposed on any state</li>
+                            <li>Sanskrit to be offered at all levels of school and higher education</li>
+                            <li>Other classical languages also to be available as options</li>
+                            <li>Foreign languages offered at the secondary level</li>
+                        </ul>
+                        <a href="https://www.education.gov.in/national-education-policy-2020-0" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 policy-item" data-aos="fade-up" data-category="higher">
+                <div class="card policy-card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-success">Higher Education</span>
+                        </div>
+                        <h5 class="card-title">Research and Innovation</h5>
+                        <p class="card-text">The policy emphasizes research and innovation across disciplines to make India a knowledge superpower:</p>
+                        <ul>
+                            <li>Establishment of a National Research Foundation (NRF) to fund outstanding research</li>
+                            <li>Focus on promoting research in universities and colleges</li>
+                            <li>NRF will coordinate with multiple funding agencies to ensure synergy of operations</li>
+                            <li>Research focus on both basic and applied research as well as translational research</li>
+                            <li>Special research funds for startups and technology development</li>
+                        </ul>
+                        <a href="https://www.education.gov.in/national-education-policy-2020-0" target="_blank" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Implementation Timeline -->
+        <div class="card mt-5 mb-5 border-0 shadow" data-aos="fade-up">
+            <div class="card-body">
+                <h4 class="card-title mb-4">NEP 2020 Implementation Timeline</h4>
+                <div class="timeline">
+                    <div class="row g-0">
+                        <div class="col-md-3">
+                            <div class="p-3 border-end">
+                                <h5 class="text-primary">2021-22</h5>
+                                <p>Early implementation phase</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 border-end">
+                                <h5 class="text-primary">2023-25</h5>
+                                <p>Intermediate phase</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 border-end">
+                                <h5 class="text-primary">2026-30</h5>
+                                <p>Advanced implementation</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3">
+                                <h5 class="text-primary">2031-40</h5>
+                                <p>Completion and refinement</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="https://www.education.gov.in/implementation-plan" target="_blank" class="btn btn-outline-primary">View Detailed Implementation Plan</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -96,10 +466,10 @@
                     <h5 class="mb-4"><i class="fas fa-chart-line me-2"></i>AChart Path</h5>
                     <p>Your comprehensive platform for educational resources, government policies, and career opportunities.</p>
                     <div class="social-icons">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="javascript:void(0);" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="javascript:void(0);" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="javascript:void(0);" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="javascript:void(0);" class="text-white"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4">
@@ -115,16 +485,16 @@
                 <div class="col-lg-2 col-md-4">
                     <h5 class="mb-4">Resources</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Tutorials</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">FAQs</a></li>
+                        <li class="mb-2"><a href="blog.html" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="tutorials.html" class="text-white text-decoration-none">Tutorials</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-white text-decoration-none">FAQs</a></li>
                         <li><a href="support.html" class="text-white text-decoration-none">Support</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <h5 class="mb-4">Newsletter</h5>
                     <p>Subscribe to our newsletter for the latest updates.</p>
-                    <form>
+                    <form action="subscribe.html" method="POST">
                         <div class="input-group mb-3">
                             <input type="email" class="form-control" placeholder="Your email" required>
                             <button class="btn btn-primary" type="submit">Subscribe</button>
@@ -138,8 +508,8 @@
                     <p class="mb-md-0">© 2023 AChart Path. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
-                    <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+                    <a href="privacy-policy.html" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-white text-decoration-none">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -158,6 +528,33 @@
         AOS.init({
             duration: 800,
             once: true
+        });
+        
+        // Policy Category Filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryLinks = document.querySelectorAll('#policyCategories .nav-link');
+            const policyItems = document.querySelectorAll('.policy-item');
+            
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active state
+                    categoryLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.dataset.category;
+                    
+                    // Show/hide policy items based on category
+                    policyItems.forEach(item => {
+                        if (category === 'all' || item.dataset.category.includes(category)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
         });
     </script>
 </body>
