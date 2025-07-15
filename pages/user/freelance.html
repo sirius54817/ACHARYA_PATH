@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freelance Jobs - AChart Path</title>
+    <title>Freelance Jobs - ACHARYA PATH</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -12,13 +12,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for job tabs navigation */
+        #jobTabs .nav-link {
+            color: #000000;
+            font-weight: 500;
+            border: 1px solid #dee2e6;
+            background-color: #f8f9fa;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        #jobTabs .nav-link:hover {
+            color: #000000;
+            border-bottom-color: transparent;
+            background-color: #e9ecef;
+        }
+        
+        #jobTabs .nav-link.active {
+            color: #000000;
+            font-weight: 600;
+            background-color: #ffffff;
+            border-bottom-color: transparent;
+        }
+        
+        /* Styles for My Jobs inner tabs */
+        #myJobsTab .nav-link {
+            color: #000000;
+            font-weight: 500;
+            background-color: #f8f9fa;
+            margin-right: 5px;
+        }
+        
+        #myJobsTab .nav-link:hover {
+            color: #000000;
+            background-color: #e9ecef;
+        }
+        
+        #myJobsTab .nav-link.active {
+            color: #000000;
+            font-weight: 600;
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="dashboard.html">
-                <i class="fas fa-chart-line me-2"></i>AChart Path
+                <i class="fas fa-graduation-cap me-2"></i>ACHARYA PATH
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -72,26 +115,483 @@
 
     <!-- Main Content -->
     <div class="container py-5">
-        <h1 class="mb-4">Freelance Jobs</h1>
-        <div class="row g-4">
-            <!-- Job Cards -->
-            <div class="col-md-6" data-aos="fade-up">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="badge bg-primary">Web Development</span>
-                            <span class="text-success">$25-35/hr</span>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Freelance Jobs</h1>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createJobModal">
+                <i class="fas fa-plus-circle me-2"></i> Create New Job
+            </button>
+        </div>
+        
+        <!-- Job Navigation Tabs -->
+        <ul class="nav nav-tabs mb-4" id="jobTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="browse-tab" data-bs-toggle="tab" data-bs-target="#browse-jobs" type="button" role="tab" aria-controls="browse-jobs" aria-selected="true">
+                    <i class="fas fa-search me-2"></i> Browse Jobs
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="my-jobs-tab" data-bs-toggle="tab" data-bs-target="#my-jobs" type="button" role="tab" aria-controls="my-jobs" aria-selected="false">
+                    <i class="fas fa-briefcase me-2"></i> My Posted Jobs
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="applications-tab" data-bs-toggle="tab" data-bs-target="#my-applications" type="button" role="tab" aria-controls="my-applications" aria-selected="false">
+                    <i class="fas fa-file-alt me-2"></i> My Applications
+                </button>
+            </li>
+        </ul>
+        
+        <!-- Tab Content -->
+        <div class="tab-content" id="jobTabsContent">
+            <!-- Browse Jobs Tab -->
+            <div class="tab-pane fade show active" id="browse-jobs" role="tabpanel" aria-labelledby="browse-tab">
+                <!-- Job Categories -->
+                <div class="mb-4">
+                    <div class="btn-group" role="group" aria-label="Job Categories">
+                        <button type="button" class="btn btn-outline-primary active" data-category="all">All</button>
+                        <button type="button" class="btn btn-outline-primary" data-category="Web Development">Web Development</button>
+                        <button type="button" class="btn btn-outline-primary" data-category="Content Writing">Content Writing</button>
+                        <button type="button" class="btn btn-outline-primary" data-category="Graphic Design">Graphic Design</button>
+                        <button type="button" class="btn btn-outline-primary" data-category="Data Science">Data Science</button>
+                        <button type="button" class="btn btn-outline-primary" data-category="Mobile Development">Mobile Development</button>
+                    </div>
+                </div>
+                
+                <div class="row g-4" id="jobsList">
+                    <!-- Job Cards - Content will be loaded by JS -->
+                    <div class="col-md-6" data-aos="fade-up" data-category="Web Development">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-primary">Web Development</span>
+                                    <span class="text-success">$25-35/hr</span>
+                                </div>
+                                <h5 class="card-title">Frontend Developer Needed</h5>
+                                <p class="card-text">Looking for a skilled frontend developer to build a responsive website for a small business.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-muted">Posted 2 days ago</small>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyJobModal" data-job-title="Frontend Developer Needed">Apply Now</a>
+                                </div>
+                            </div>
                         </div>
-                        <h5 class="card-title">Frontend Developer Needed</h5>
-                        <p class="card-text">Looking for a skilled frontend developer to build a responsive website for a small business.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <small class="text-muted">Posted 2 days ago</small>
-                            <a href="#" class="btn btn-primary">Apply Now</a>
+                    </div>
+                    
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="100" data-category="Content Writing">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-primary">Content Writing</span>
+                                    <span class="text-success">$20-30/hr</span>
+                                </div>
+                                <h5 class="card-title">Technical Content Writer</h5>
+                                <p class="card-text">We need a technical writer to create documentation and tutorials for our software products.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-muted">Posted 3 days ago</small>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyJobModal" data-job-title="Technical Content Writer">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="200" data-category="Graphic Design">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-primary">Graphic Design</span>
+                                    <span class="text-success">$30-40/hr</span>
+                                </div>
+                                <h5 class="card-title">UI/UX Designer for Mobile App</h5>
+                                <p class="card-text">Looking for a talented UI/UX designer to create intuitive interfaces for a new mobile application.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-muted">Posted 1 day ago</small>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyJobModal" data-job-title="UI/UX Designer for Mobile App">Apply Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300" data-category="Data Science">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-primary">Data Science</span>
+                                    <span class="text-success">$40-50/hr</span>
+                                </div>
+                                <h5 class="card-title">Data Analyst for Education Project</h5>
+                                <p class="card-text">Seeking a data analyst to help analyze educational outcomes and provide insights for improvement.</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <small class="text-muted">Posted 4 days ago</small>
+                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyJobModal" data-job-title="Data Analyst for Education Project">Apply Now</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- More job cards... -->
+            
+            <!-- My Posted Jobs Tab -->
+            <div class="tab-pane fade" id="my-jobs" role="tabpanel" aria-labelledby="my-jobs-tab">
+                <ul class="nav nav-pills mb-3" id="myJobsTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="posted-jobs-tab" data-bs-toggle="pill" data-bs-target="#posted-jobs" type="button" role="tab" aria-controls="posted-jobs" aria-selected="true">Posted Jobs</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="accepted-applications-tab" data-bs-toggle="pill" data-bs-target="#accepted-applications" type="button" role="tab" aria-controls="accepted-applications" aria-selected="false">Accepted Applications</button>
+                    </li>
+                </ul>
+                
+                <div class="tab-content" id="myJobsTabContent">
+                    <!-- Posted Jobs Tab -->
+                    <div class="tab-pane fade show active" id="posted-jobs" role="tabpanel" aria-labelledby="posted-jobs-tab">
+                        <div class="alert alert-info mb-4">
+                            <i class="fas fa-info-circle me-2"></i> Jobs you post will be automatically removed after 24 hours to keep the listings fresh.
+                        </div>
+                        
+                        <div class="row g-4" id="myJobsList">
+                            <!-- User's posted jobs will be displayed here -->
+                            <div id="noJobsMessage" class="col-12 text-center py-5">
+                                <i class="fas fa-briefcase text-muted" style="font-size: 3rem;"></i>
+                                <h4 class="mt-3">No Jobs Posted Yet</h4>
+                                <p>You haven't posted any jobs yet. Click the "Create New Job" button to get started.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Accepted Applications Tab -->
+                    <div class="tab-pane fade" id="accepted-applications" role="tabpanel" aria-labelledby="accepted-applications-tab">
+                        <div class="row g-4" id="acceptedApplicationsList">
+                            <!-- Accepted applications will be displayed here -->
+                            <div id="noAcceptedApplicationsMessage" class="col-12 text-center py-5">
+                                <i class="fas fa-check-circle text-muted" style="font-size: 3rem;"></i>
+                                <h4 class="mt-3">No Accepted Applications Yet</h4>
+                                <p>When you accept job applications, they will appear here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- My Applications Tab -->
+            <div class="tab-pane fade" id="my-applications" role="tabpanel" aria-labelledby="applications-tab">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Applied Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applicationsTableBody">
+                            <!-- Application data will be loaded here by JS -->
+                        </tbody>
+                    </table>
+                    
+                    <div id="noApplicationsMessage" class="text-center py-5">
+                        <i class="fas fa-file-alt text-muted" style="font-size: 3rem;"></i>
+                        <h4 class="mt-3">No Applications Yet</h4>
+                        <p>You haven't applied to any jobs yet. Browse the job listings to find opportunities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Job Modal -->
+    <div class="modal fade" id="createJobModal" tabindex="-1" aria-labelledby="createJobModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createJobModalLabel">Create New Job</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createJobForm">
+                        <div class="mb-3">
+                            <label for="jobTitle" class="form-label">Job Title</label>
+                            <input type="text" class="form-control" id="jobTitle" placeholder="e.g., Frontend Developer Needed" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="jobDomain" class="form-label">Domain/Category</label>
+                            <select class="form-select" id="jobDomain" required>
+                                <option value="" selected disabled>Select Domain</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Content Writing">Content Writing</option>
+                                <option value="Graphic Design">Graphic Design</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Mobile Development">Mobile Development</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Video Production">Video Production</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="jobPayMin" class="form-label">Minimum Pay ($/hr)</label>
+                                <input type="number" class="form-control" id="jobPayMin" min="1" placeholder="e.g., 20" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="jobPayMax" class="form-label">Maximum Pay ($/hr)</label>
+                                <input type="number" class="form-control" id="jobPayMax" min="1" placeholder="e.g., 35" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="jobDescription" class="form-label">Job Description</label>
+                            <textarea class="form-control" id="jobDescription" rows="4" placeholder="Detailed description of the job, skills required, etc." required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="jobRequirements" class="form-label">Requirements</label>
+                            <textarea class="form-control" id="jobRequirements" rows="3" placeholder="List specific requirements, skills, or qualifications" required></textarea>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="contactEmail" class="form-label">Contact Email</label>
+                                <input type="email" class="form-control" id="contactEmail" placeholder="your@email.com" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="contactPhone" class="form-label">Contact Phone (Optional)</label>
+                                <input type="tel" class="form-control" id="contactPhone" placeholder="e.g., +91 9876543210">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="jobDeadline" class="form-label">Application Deadline</label>
+                            <input type="date" class="form-control" id="jobDeadline" required>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                            <label class="form-check-label" for="termsCheck">
+                                I agree to the <a href="../public/terms-of-service.html" target="_blank">Terms of Service</a> and understand that this job posting will be automatically removed after 24 hours.
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="submitJobBtn">Create Job</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apply for Job Modal -->
+    <div class="modal fade" id="applyJobModal" tabindex="-1" aria-labelledby="applyJobModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="applyJobModalLabel">Apply for Job</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="applyJobForm">
+                        <input type="hidden" id="jobIdInput">
+                        <input type="hidden" id="applyJobTitle">
+                        
+                        <div class="mb-3">
+                            <label for="coverLetterInput" class="form-label">Cover Letter</label>
+                            <textarea class="form-control" id="coverLetterInput" rows="5" placeholder="Introduce yourself and explain why you're a good fit for this position..." required></textarea>
+                            <div class="form-text">Describe your relevant experience and why you're interested in this position.</div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="availabilityInput" class="form-label">Availability</label>
+                                <select class="form-select" id="availabilityInput" required>
+                                    <option value="" selected disabled>Select your availability</option>
+                                    <option value="immediate">Immediate</option>
+                                    <option value="1week">Within 1 week</option>
+                                    <option value="2weeks">Within 2 weeks</option>
+                                    <option value="1month">Within 1 month</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="expectedRateInput" class="form-label">Expected Rate</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">₹</span>
+                                    <input type="text" class="form-control" id="expectedRateInput" placeholder="Your expected rate" required>
+                                    <select class="form-select" style="max-width: 40%;">
+                                        <option value="hourly">Per Hour</option>
+                                        <option value="fixed">Fixed Price</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="portfolioLinkInput" class="form-label">Portfolio Link (Optional)</label>
+                            <input type="url" class="form-control" id="portfolioLinkInput" placeholder="https://yourportfolio.com">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="attachmentInput" class="form-label">Attachments (Optional)</label>
+                            <input class="form-control" type="file" id="attachmentInput">
+                            <div class="form-text">Upload your resume, certificates, or work samples.</div>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
+                            <label class="form-check-label" for="termsCheckbox">
+                                I agree to the <a href="#">terms and conditions</a> and <a href="#">privacy policy</a>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="applyJobForm" id="submitApplicationBtn" class="btn btn-primary">Submit Application</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Applied Success Modal -->
+    <div class="modal fade" id="jobAppliedModal" tabindex="-1" aria-labelledby="jobAppliedModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="jobAppliedModalLabel">Application Submitted</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                    <h4 class="mt-3">Success!</h4>
+                    <p>Your application has been submitted successfully. The employer will contact you if they're interested.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Created Success Modal -->
+    <div class="modal fade" id="jobCreatedModal" tabindex="-1" aria-labelledby="jobCreatedModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="jobCreatedModalLabel">Job Posted</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                    <h4 class="mt-3">Success!</h4>
+                    <p>Your job has been posted successfully. It will be visible to all users for the next 24 hours.</p>
+                    <p><small class="text-muted">Note: The job posting will be automatically removed after 24 hours.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Details Modal -->
+    <div class="modal fade" id="applicationDetailsModal" tabindex="-1" aria-labelledby="applicationDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="applicationDetailsModalLabel">Application Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 id="detailsJobTitle">Job Title</h4>
+                        <span class="badge bg-secondary" id="detailsStatus">Pending</span>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Applied On:</strong> <span id="detailsAppliedDate"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Status Last Updated:</strong> <span id="detailsStatusDate">-</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <p><strong>Availability:</strong> <span id="detailsAvailability"></span></p>
+                        <p><strong>Expected Rate:</strong> <span id="detailsExpectedRate"></span></p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6>Cover Letter:</h6>
+                        <div class="p-3 bg-light rounded">
+                            <p id="detailsCoverLetter" class="mb-0"></p>
+                        </div>
+                    </div>
+                    
+                    <div id="detailsFeedbackContainer" class="mb-3 d-none">
+                        <h6>Employer Feedback:</h6>
+                        <div class="p-3 bg-light rounded">
+                            <p id="detailsFeedback" class="mb-0">No feedback provided yet.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Message Sent Modal -->
+    <div class="modal fade" id="messageSentModal" tabindex="-1" aria-labelledby="messageSentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageSentModalLabel">Message Sent</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 3rem;"></i>
+                    </div>
+                    <h5>Your message has been sent successfully!</h5>
+                    <p class="text-muted">The employer will be notified of your response.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 5">
+        <div id="applicationToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastBody">
+                <!-- Content will be dynamically added -->
+            </div>
+        </div>
+    </div>
+
+    <!-- View Application Details Modal -->
+    <div class="modal fade" id="viewApplicationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title">Application Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="applicationDetailsContent">
+                    <!-- Content will be dynamically added -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" id="withdrawApplicationBtn">Withdraw Application</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -100,13 +600,13 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <h5 class="mb-4"><i class="fas fa-chart-line me-2"></i>AChart Path</h5>
+                    <h5 class="mb-4"><i class="fas fa-graduation-cap me-2"></i>ACHARYA PATH</h5>
                     <p>Your comprehensive platform for educational resources, government policies, and career opportunities.</p>
                     <div class="social-icons">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://facebook.com" target="_blank" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="text-white"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4">
@@ -122,16 +622,16 @@
                 <div class="col-lg-2 col-md-4">
                     <h5 class="mb-4">Resources</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Tutorials</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">FAQs</a></li>
+                        <li class="mb-2"><a href="../public/blog.html" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="../public/tutorials.html" class="text-white text-decoration-none">Tutorials</a></li>
+                        <li class="mb-2"><a href="../public/faqs.html" class="text-white text-decoration-none">FAQs</a></li>
                         <li><a href="support.html" class="text-white text-decoration-none">Support</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <h5 class="mb-4">Newsletter</h5>
                     <p>Subscribe to our newsletter for the latest updates.</p>
-                    <form>
+                    <form action="../public/subscribe.html" method="POST">
                         <div class="input-group mb-3">
                             <input type="email" class="form-control" placeholder="Your email" required>
                             <button class="btn btn-primary" type="submit">Subscribe</button>
@@ -142,11 +642,11 @@
             <hr class="my-4">
             <div class="row">
                 <div class="col-md-6">
-                    <p class="mb-md-0">© 2023 AChart Path. All rights reserved.</p>
+                    <p class="mb-md-0">© 2023 ACHARYA PATH. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
-                    <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+                    <a href="../public/privacy-policy.html" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                    <a href="../public/terms-of-service.html" class="text-white text-decoration-none">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -166,6 +666,713 @@
             duration: 800,
             once: true
         });
+        
+        // Job filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter jobs by category
+            const categoryButtons = document.querySelectorAll('[data-category]');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Toggle active class
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter jobs
+                    const jobCards = document.querySelectorAll('#jobsList > div');
+                    jobCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (category === 'all' || cardCategory === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Set minimum date for job deadline to today
+            const jobDeadlineInput = document.getElementById('jobDeadline');
+            if (jobDeadlineInput) {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                
+                const formattedDate = tomorrow.toISOString().split('T')[0];
+                jobDeadlineInput.setAttribute('min', formattedDate);
+                jobDeadlineInput.value = formattedDate;
+            }
+            
+            // Populate user data in application form if available
+            const userNameElement = document.querySelector('.user-name');
+            if (userNameElement && userNameElement.textContent !== 'User') {
+                const applicantNameInput = document.getElementById('applicantName');
+                if (applicantNameInput) {
+                    applicantNameInput.value = userNameElement.textContent;
+                }
+                
+                // Try to get email from localStorage if available
+                const userEmail = localStorage.getItem('userEmail');
+                if (userEmail) {
+                    const applicantEmailInput = document.getElementById('applicantEmail');
+                    if (applicantEmailInput) {
+                        applicantEmailInput.value = userEmail;
+                    }
+                }
+            }
+            
+            // Job application functionality
+            const applyButtons = document.querySelectorAll('[data-bs-target="#applyJobModal"]');
+            applyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const jobTitle = this.getAttribute('data-job-title');
+                    document.getElementById('applyJobTitle').value = jobTitle;
+                });
+            });
+            
+            // Submit job application
+            document.getElementById('submitApplicationBtn').addEventListener('click', function() {
+                const form = document.getElementById('applyJobForm');
+                if (form.checkValidity()) {
+                    // Hide apply modal
+                    const applyModal = bootstrap.Modal.getInstance(document.getElementById('applyJobModal'));
+                    applyModal.hide();
+                    
+                    // Store application data in localStorage and get the ID
+                    const applicationId = storeJobApplication();
+                    
+                    // Show success modal
+                    const successModal = new bootstrap.Modal(document.getElementById('jobAppliedModal'));
+                    successModal.show();
+                    
+                    // Clear form for next use
+                    setTimeout(() => {
+                        form.reset();
+                    }, 1000);
+                    
+                    // Update My Applications tab if it's active
+                    const applicationsTab = document.querySelector('#applications-tab');
+                    if (applicationsTab && applicationsTab.classList.contains('active')) {
+                        loadMyApplications();
+                    }
+                } else {
+                    form.reportValidity();
+                }
+            });
+            
+            // Create job functionality
+            document.getElementById('submitJobBtn').addEventListener('click', function() {
+                const form = document.getElementById('createJobForm');
+                if (form.checkValidity()) {
+                    // Hide create job modal
+                    const createModal = bootstrap.Modal.getInstance(document.getElementById('createJobModal'));
+                    createModal.hide();
+                    
+                    // Show success modal
+                    const successModal = new bootstrap.Modal(document.getElementById('jobCreatedModal'));
+                    successModal.show();
+                    
+                    // Add the new job to the page
+                    createJobCard();
+                    
+                    // Update My Jobs tab
+                    loadMyJobs();
+                    
+                    // Clear form for next use
+                    setTimeout(() => {
+                        form.reset();
+                    }, 1000);
+                } else {
+                    form.reportValidity();
+                }
+            });
+            
+            // Load existing jobs and check for expired ones
+            loadJobsFromStorage();
+            checkExpiredJobs();
+            
+            // Load My Jobs and My Applications tabs
+            loadMyJobs();
+            loadMyApplications();
+            
+            // Add listener for tab changes
+            const tabEls = document.querySelectorAll('button[data-bs-toggle="tab"]');
+            tabEls.forEach(tabEl => {
+                tabEl.addEventListener('shown.bs.tab', function(event) {
+                    if (event.target.id === 'my-jobs-tab') {
+                        loadMyJobs();
+                    } else if (event.target.id === 'applications-tab') {
+                        loadMyApplications();
+                    }
+                });
+            });
+        });
+        
+        // Function to store job application
+        function storeJobApplication() {
+            // Get form values
+            const jobTitle = document.getElementById('applyJobTitle').value;
+            const applicantName = document.querySelector('.user-name').textContent;
+            const applicantEmail = localStorage.getItem('userEmail') || 'user@example.com';
+            const coverLetter = document.getElementById('coverLetterInput').value;
+            const availability = document.getElementById('availabilityInput').value || 'immediate';
+            const expectedRate = document.getElementById('expectedRateInput').value || '20';
+            
+            // Create a unique ID for this application
+            const applicationId = 'app_' + Date.now();
+            
+            // Create application object
+            const application = {
+                id: applicationId,
+                jobTitle: jobTitle,
+                applicantName: applicantName,
+                applicantEmail: applicantEmail,
+                coverLetter: coverLetter,
+                availability: availability,
+                expectedRate: expectedRate,
+                appliedDate: new Date().toISOString(),
+                status: 'Pending'
+            };
+            
+            // Store in localStorage - using consistent key 'jobApplications'
+            const myApplications = JSON.parse(localStorage.getItem('jobApplications') || '[]');
+            myApplications.push(application);
+            localStorage.setItem('jobApplications', JSON.stringify(myApplications));
+            
+            // Find the job in posted jobs and add application to it
+            const jobs = JSON.parse(localStorage.getItem('postedJobs')) || [];
+            const job = jobs.find(j => j.title === jobTitle);
+            
+            if (job) {
+                // Initialize applications array if it doesn't exist
+                if (!job.applications) {
+                    job.applications = [];
+                }
+                
+                // Add application to job
+                job.applications.push({
+                    id: applicationId,
+                    name: applicantName,
+                    email: applicantEmail,
+                    coverLetter: coverLetter,
+                    availability: availability,
+                    expectedRate: expectedRate,
+                    date: new Date().toISOString(),
+                    status: 'Pending'
+                });
+                
+                // Save back to localStorage
+                localStorage.setItem('postedJobs', JSON.stringify(jobs));
+            }
+            
+            // Return the application ID for potential use
+            return applicationId;
+        }
+        
+        // Function to create a new job card and add it to the page
+        function createJobCard() {
+            const jobTitle = document.getElementById('jobTitle').value;
+            const jobDomain = document.getElementById('jobDomain').value;
+            const jobPayMin = document.getElementById('jobPayMin').value;
+            const jobPayMax = document.getElementById('jobPayMax').value;
+            const jobDescription = document.getElementById('jobDescription').value;
+            const jobDeadline = document.getElementById('jobDeadline').value;
+            const contactEmail = document.getElementById('contactEmail').value;
+            
+            // Create a unique ID for this job
+            const jobId = 'job_' + Date.now();
+            
+            // Create HTML for new job card
+            const jobCard = document.createElement('div');
+            jobCard.className = 'col-md-6';
+            jobCard.setAttribute('data-aos', 'fade-up');
+            jobCard.setAttribute('data-category', jobDomain);
+            jobCard.setAttribute('data-job-id', jobId);
+            jobCard.innerHTML = `
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-primary">${jobDomain}</span>
+                            <span class="text-success">$${jobPayMin}-${jobPayMax}/hr</span>
+                        </div>
+                        <h5 class="card-title">${jobTitle}</h5>
+                        <p class="card-text">${jobDescription.substring(0, 120)}${jobDescription.length > 120 ? '...' : ''}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <small class="text-muted">Posted just now</small>
+                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyJobModal" data-job-title="${jobTitle}">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add the card to the jobs list
+            document.getElementById('jobsList').prepend(jobCard);
+            
+            // Store job in localStorage with creation timestamp
+            storeJob(jobId, jobTitle, jobDomain, jobPayMin, jobPayMax, jobDescription, jobDeadline, contactEmail);
+            
+            // Schedule job for auto-deletion after 24 hours
+            scheduleJobDeletion(jobId);
+        }
+        
+        // Store job in localStorage
+        function storeJob(jobId, jobTitle, jobDomain, jobPayMin, jobPayMax, jobDescription, jobDeadline, contactEmail) {
+            // Get existing jobs or initialize empty array
+            const jobs = JSON.parse(localStorage.getItem('postedJobs')) || [];
+            
+            // Get current user
+            const userName = document.querySelector('.user-name').textContent;
+            
+            // Add new job
+            jobs.push({
+                id: jobId,
+                title: jobTitle,
+                domain: jobDomain,
+                payMin: jobPayMin,
+                payMax: jobPayMax,
+                description: jobDescription,
+                deadline: jobDeadline,
+                contactEmail: contactEmail,
+                postedBy: userName,
+                createdAt: new Date().toISOString(),
+                expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours from now
+                applications: [] // To store applications for this job
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('postedJobs', JSON.stringify(jobs));
+        }
+        
+        // Schedule job for deletion after 24 hours
+        function scheduleJobDeletion(jobId) {
+            setTimeout(() => {
+                // Get the job element from the DOM
+                const jobElement = document.querySelector(`[data-job-id="${jobId}"]`);
+                
+                // Remove the element if it exists
+                if (jobElement) {
+                    jobElement.remove();
+                }
+                
+                // Also remove from "My Jobs" list
+                const myJobElement = document.querySelector(`[data-my-job-id="${jobId}"]`);
+                if (myJobElement) {
+                    myJobElement.remove();
+                }
+                
+                // Also remove from localStorage
+                removeJobFromStorage(jobId);
+            }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+        }
+        
+        // Remove job from localStorage
+        function removeJobFromStorage(jobId) {
+            // Get existing jobs
+            const jobs = JSON.parse(localStorage.getItem('postedJobs')) || [];
+            
+            // Filter out the job to remove
+            const updatedJobs = jobs.filter(job => job.id !== jobId);
+            
+            // Save updated list to localStorage
+            localStorage.setItem('postedJobs', JSON.stringify(updatedJobs));
+        }
+        
+        // Load jobs from localStorage
+        function loadJobsFromStorage() {
+            const jobs = JSON.parse(localStorage.getItem('postedJobs')) || [];
+            
+            jobs.forEach(job => {
+                // Create job card for each stored job
+                const jobCard = document.createElement('div');
+                jobCard.className = 'col-md-6';
+                jobCard.setAttribute('data-aos', 'fade-up');
+                jobCard.setAttribute('data-category', job.domain);
+                jobCard.setAttribute('data-job-id', job.id);
+                
+                // Calculate time since posting
+                const postedDate = new Date(job.createdAt);
+                const now = new Date();
+                const diffTime = Math.abs(now - postedDate);
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                const diffHours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let timeAgo = diffDays > 0 ? `${diffDays} days ago` : `${diffHours} hours ago`;
+                if (diffDays === 0 && diffHours === 0) {
+                    timeAgo = 'just now';
+                }
+                
+                jobCard.innerHTML = `
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary">${job.domain}</span>
+                                <span class="text-success">$${job.payMin}-${job.payMax}/hr</span>
+                            </div>
+                            <h5 class="card-title">${job.title}</h5>
+                            <p class="card-text">${job.description.substring(0, 120)}${job.description.length > 120 ? '...' : ''}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <small class="text-muted">Posted ${timeAgo}</small>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyJobModal" data-job-title="${job.title}">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add the card to the jobs list
+                document.getElementById('jobsList').prepend(jobCard);
+                
+                // Schedule this job for deletion too (on page refresh)
+                const expiresAt = new Date(job.expiresAt);
+                const timeUntilExpiry = expiresAt - now;
+                
+                if (timeUntilExpiry > 0) {
+                    setTimeout(() => {
+                        const jobElement = document.querySelector(`[data-job-id="${job.id}"]`);
+                        if (jobElement) {
+                            jobElement.remove();
+                        }
+                        
+                        const myJobElement = document.querySelector(`[data-my-job-id="${job.id}"]`);
+                        if (myJobElement) {
+                            myJobElement.remove();
+                        }
+                        
+                        removeJobFromStorage(job.id);
+                    }, timeUntilExpiry);
+                }
+            });
+        }
+        
+        // Check for and remove expired jobs
+        function checkExpiredJobs() {
+            const jobs = JSON.parse(localStorage.getItem('postedJobs')) || [];
+            const now = new Date();
+            const updatedJobs = [];
+            
+            jobs.forEach(job => {
+                const expiresAt = new Date(job.expiresAt);
+                if (expiresAt > now) {
+                    // Job is still valid
+                    updatedJobs.push(job);
+                } else {
+                    // Job has expired - remove from DOM if present
+                    const jobElement = document.querySelector(`[data-job-id="${job.id}"]`);
+                    if (jobElement) {
+                        jobElement.remove();
+                    }
+                    
+                    const myJobElement = document.querySelector(`[data-my-job-id="${job.id}"]`);
+                    if (myJobElement) {
+                        myJobElement.remove();
+                    }
+                }
+            });
+            
+            // Update localStorage with only non-expired jobs
+            localStorage.setItem('postedJobs', JSON.stringify(updatedJobs));
+        }
+        
+        // Load jobs posted by the current user into My Jobs tab
+        function loadMyJobs() {
+            const myJobsList = document.getElementById('myJobsList');
+            const noJobsMessage = document.getElementById('noJobsMessage');
+            
+            // Clear the jobs list
+            myJobsList.innerHTML = '';
+            
+            // Get the current user
+            const userName = document.querySelector('.user-name').textContent;
+            
+            // Get all jobs
+            const jobs = JSON.parse(localStorage.getItem('postedJobs')) || [];
+            
+            // Filter jobs posted by the current user
+            const myJobs = jobs.filter(job => job.postedBy === userName);
+            
+            // Show or hide the no jobs message
+            if (myJobs.length === 0) {
+                myJobsList.appendChild(noJobsMessage);
+            } else {
+                // Remove the no jobs message if it exists
+                if (noJobsMessage.parentElement === myJobsList) {
+                    myJobsList.removeChild(noJobsMessage);
+                }
+                
+                // Add each job to the list
+                myJobs.forEach(job => {
+                    // Calculate time until expiration
+                    const expiresAt = new Date(job.expiresAt);
+                    const now = new Date();
+                    const timeRemaining = expiresAt - now;
+                    
+                    const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    const expiresIn = `${hours}h ${minutes}m`;
+                    
+                    const jobCard = document.createElement('div');
+                    jobCard.className = 'col-md-6 mb-4';
+                    jobCard.setAttribute('data-my-job-id', job.id);
+                    
+                    // Check if there are any applications for this job
+                    const hasApplications = job.applications && job.applications.length > 0;
+                    
+                    jobCard.innerHTML = `
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                <span class="badge bg-primary">${job.domain}</span>
+                                <span class="text-danger"><i class="fas fa-clock me-1"></i> Expires in: ${expiresIn}</span>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">${job.title}</h5>
+                                <p class="card-text">${job.description.substring(0, 100)}${job.description.length > 100 ? '...' : ''}</p>
+                                <p class="text-success mb-2">$${job.payMin}-${job.payMax}/hr</p>
+                                <p class="small text-muted mb-0">
+                                    <strong>Deadline:</strong> ${new Date(job.deadline).toLocaleDateString()}
+                                </p>
+                            </div>
+                            <div class="card-footer bg-white">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted small">
+                                        <i class="fas fa-envelope me-1"></i> ${job.applications.length} application(s)
+                                    </span>
+                                    <div>
+                                        ${hasApplications ? `<button class="btn btn-sm btn-outline-primary me-2" onclick="viewApplications('${job.id}')">
+                                            <i class="fas fa-users me-1"></i> View Applications
+                                        </button>` : ''}
+                                        <button class="btn btn-sm btn-outline-danger" onclick="deleteJob('${job.id}')">
+                                            <i class="fas fa-trash me-1"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    myJobsList.appendChild(jobCard);
+                });
+            }
+            
+            // Load the accepted applications tab content
+            loadAcceptedApplications();
+        }
+        
+        // Delete a job (before its 24-hour expiration)
+        function deleteJob(jobId) {
+            if (confirm('Are you sure you want to delete this job posting? All applications will be deleted as well.')) {
+                // Get the jobs from localStorage
+                const jobs = JSON.parse(localStorage.getItem('postedJobs')) || [];
+                
+                // Find the job index
+                const jobIndex = jobs.findIndex(j => j.id === jobId);
+                
+                if (jobIndex !== -1) {
+                    // Remove the job
+                    jobs.splice(jobIndex, 1);
+                    
+                    // Save back to localStorage
+                    localStorage.setItem('postedJobs', JSON.stringify(jobs));
+                    
+                    // Refresh the jobs list
+                    loadMyJobs();
+                    
+                    // Show success message
+                    alert('Job posting has been deleted successfully.');
+                }
+            }
+        }
+        
+        // Load applications submitted by the current user
+        function loadMyApplications() {
+            const applications = JSON.parse(localStorage.getItem('jobApplications') || '[]');
+            const applicationsContainer = document.getElementById('applicationsContainer');
+            
+            // Clear container
+            applicationsContainer.innerHTML = '';
+            
+            if (applications.length === 0) {
+                applicationsContainer.innerHTML = `
+                    <div class="text-center my-5 py-5">
+                        <i class="fas fa-file-alt fa-3x mb-3 text-muted"></i>
+                        <h4>No Applications Yet</h4>
+                        <p>You haven't applied to any jobs yet. Browse available positions and submit your application.</p>
+                        <button class="btn btn-primary" data-bs-toggle="tab" data-bs-target="#jobListings">
+                            <i class="fas fa-search"></i> Browse Jobs
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort applications with most recent first
+            applications.sort((a, b) => new Date(b.appliedDate) - new Date(a.appliedDate));
+            
+            // Create application cards
+            applications.forEach(application => {
+                const applicationDate = new Date(application.appliedDate);
+                const formattedDate = applicationDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                let statusClass = 'secondary';
+                if (application.status === 'Accepted') statusClass = 'success';
+                if (application.status === 'Rejected') statusClass = 'danger';
+                if (application.status === 'Interview') statusClass = 'primary';
+                
+                const applicationCard = document.createElement('div');
+                applicationCard.className = 'card mb-3 application-card';
+                applicationCard.innerHTML = `
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <h5 class="card-title mb-0">${application.jobTitle}</h5>
+                            <span class="badge bg-${statusClass}">${application.status}</span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <p class="mb-1"><strong>Applied:</strong> ${formattedDate}</p>
+                            <p class="mb-1"><strong>Availability:</strong> ${application.availability}</p>
+                            <p class="mb-1"><strong>Expected Rate:</strong> ₹${application.expectedRate}/hr</p>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h6>Cover Letter:</h6>
+                            <p class="text-muted">${application.coverLetter}</p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-end mt-3">
+                            <button class="btn btn-sm btn-outline-danger me-2" onclick="withdrawApplication('${application.id}')">
+                                <i class="fas fa-times-circle"></i> Withdraw
+                            </button>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewApplicationDetails('${application.id}')">
+                                <i class="fas fa-eye"></i> View Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                applicationsContainer.appendChild(applicationCard);
+            });
+        }
+        
+        /**
+         * Withdraw job application
+         */
+        function withdrawApplication(applicationId) {
+            if (confirm('Are you sure you want to withdraw this application?')) {
+                let applications = JSON.parse(localStorage.getItem('jobApplications') || '[]');
+                applications = applications.filter(app => app.id !== applicationId);
+                localStorage.setItem('jobApplications', JSON.stringify(applications));
+                
+                showAlert('Application withdrawn successfully', 'info');
+                loadMyApplications();
+            }
+        }
+        
+        /**
+         * View application details
+         */
+        function viewApplicationDetails(applicationId) {
+            const applications = JSON.parse(localStorage.getItem('jobApplications') || '[]');
+            const application = applications.find(app => app.id === applicationId);
+            
+            if (!application) {
+                showAlert('Application not found', 'danger');
+                return;
+            }
+            
+            // Populate modal with application details
+            document.getElementById('detailsJobTitle').textContent = application.jobTitle;
+            document.getElementById('detailsStatus').textContent = application.status;
+            document.getElementById('detailsStatus').className = `badge bg-${
+                application.status === 'Accepted' ? 'success' : 
+                application.status === 'Rejected' ? 'danger' :
+                application.status === 'Interview' ? 'primary' : 'secondary'
+            }`;
+            
+            const applicationDate = new Date(application.appliedDate);
+            document.getElementById('detailsAppliedDate').textContent = applicationDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            
+            document.getElementById('detailsAvailability').textContent = application.availability;
+            document.getElementById('detailsExpectedRate').textContent = `₹${application.expectedRate}/hr`;
+            document.getElementById('detailsCoverLetter').textContent = application.coverLetter;
+            
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('applicationDetailsModal'));
+            modal.show();
+        }
     </script>
+    
+    <style>
+        /* Job listings styles */
+        .job-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-left: 5px solid transparent;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+            border-left-color: var(--bs-primary);
+        }
+        
+        .job-meta {
+            font-size: 0.9rem;
+        }
+        
+        .requirements-list {
+            padding-left: 1.2rem;
+        }
+        
+        /* Application styles */
+        .application-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #ccc;
+        }
+        
+        .application-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .application-card.status-pending {
+            border-left-color: #fd7e14;
+        }
+        
+        .application-card.status-accepted {
+            border-left-color: #198754;
+        }
+        
+        .application-card.status-rejected {
+            border-left-color: #dc3545;
+        }
+        
+        /* Toast styles */
+        .toast-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </body>
 </html> 

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator - ACHARYA PATH</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Resume form styles */
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+        }
+        
+        .form-section h3 {
+            color: #0d6efd;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .add-item-btn {
+            margin-top: 10px;
+        }
+        
+        .dynamic-form-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .dynamic-form-item .btn-close {
+            font-size: 0.8rem;
+        }
+        
+        /* Resume preview styles */
+        .resume-preview {
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 8px;
+        }
+        
+        .resume-preview h1 {
+            color: #0d6efd;
+            margin-bottom: 5px;
+        }
+        
+        .resume-preview h2 {
+            color: #212529;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #0d6efd;
+        }
+        
+        .resume-preview .contact-info {
+            margin-bottom: 20px;
+            color: #6c757d;
+        }
+        
+        .resume-template {
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .resume-template:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .resume-template.selected {
+            border-color: #0d6efd;
+        }
+        
+        /* Progress indicator */
+        .step-progress {
+            position: relative;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .step-progress li {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-progress .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .step-progress .step-title {
+            color: #6c757d;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .step-progress li.active .step-icon,
+        .step-progress li.completed .step-icon {
+            background-color: #0d6efd;
+            color: white;
+        }
+        
+        .step-progress li.active .step-title,
+        .step-progress li.completed .step-title {
+            color: #0d6efd;
+            font-weight: bold;
+        }
+        
+        .step-progress li.completed .step-icon:after {
+            content: '✓';
+        }
+        
+        .step-progress:before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #e9ecef;
+            z-index: -1;
+        }
+        
+        .step-progress .progress-bar {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            height: 2px;
+            background-color: #0d6efd;
+            z-index: -1;
+            transition: width 0.3s;
+        }
+        
+        /* Resume download button */
+        .download-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn .download-spinner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(13, 110, 253, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .download-btn.loading .download-spinner {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <i class="fas fa-graduation-cap me-2"></i>ACHARYA PATH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="government-policies.html">Government Policies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="freelance.html">Freelance Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.html">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="resume-generator.html">Resume Builder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="support.html">Support</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dark-mode-toggle me-3 text-white" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i> <span id="userName">User</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <h1 class="mb-4">Resume Generator</h1>
+        <p class="lead mb-5">Create a professional resume in minutes with our easy-to-use resume builder. Fill in your details, choose a template, and download your resume.</p>
+        
+        <!-- Progress Steps -->
+        <div class="position-relative mb-5">
+            <ul class="step-progress">
+                <div class="progress-bar" style="width: 0%;"></div>
+                <li class="active" data-step="1">
+                    <div class="step-icon">1</div>
+                    <div class="step-title">Personal Info</div>
+                </li>
+                <li data-step="2">
+                    <div class="step-icon">2</div>
+                    <div class="step-title">Work Experience</div>
+                </li>
+                <li data-step="3">
+                    <div class="step-icon">3</div>
+                    <div class="step-title">Education</div>
+                </li>
+                <li data-step="4">
+                    <div class="step-icon">4</div>
+                    <div class="step-title">Skills & More</div>
+                </li>
+                <li data-step="5">
+                    <div class="step-icon">5</div>
+                    <div class="step-title">Choose Template</div>
+                </li>
+                <li data-step="6">
+                    <div class="step-icon">6</div>
+                    <div class="step-title">Download</div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Resume Form & Preview Container -->
+        <div class="row">
+            <!-- Resume Form -->
+            <div class="col-lg-8">
+                <!-- Step 1: Personal Information -->
+                <div class="resume-step" id="step1">
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="state" class="form-label">State</label>
+                                <input type="text" class="form-control" id="state">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="zipCode" class="form-label">ZIP Code</label>
+                                <input type="text" class="form-control" id="zipCode">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" class="form-control" id="country">
+                            </div>
+                            <div class="col-12">
+                                <label for="jobTitle" class="form-label">Professional Title <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="jobTitle" placeholder="e.g., Software Engineer" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="profile" class="form-label">Professional Summary</label>
+                                <textarea class="form-control" id="profile" rows="4" placeholder="A brief summary of your professional background and goals"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-4">
+                        <button class="btn btn-primary next-step">Next: Work Experience <i class="fas fa-arrow-right ms-2"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Work Experience -->
+                <div class="resume-step" id="step2" style="display: none;">
+                    <div class="form-section">
+                        <h3>Work Experience</h3>
+                        <p class="text-muted">Add your work experience, starting with the most recent.</p>
+                        
+                        <div id="experienceItems">
+                            <!-- Dynamic work experience items will be added here -->
+                            <div class="dynamic-form-item" id="experience-1">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="mb-0">Experience #1</h5>
+                                    <button type="button" class="btn-close remove-item" data-id="experience-1"></button>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Company <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="company" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Job Title <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="title" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Start Date <span class="text-danger">*</span></label>
+                                        <input type="month" class="form-control" name="startDate" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">End Date</label>
+                                        <input type="month" class="form-control" name="endDate">
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input current-job" type="checkbox" name="currentJob" id="currentJob-1">
+                                            <label class="form-check-label" for="currentJob-1">
+                                                I currently work here
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Location</label>
+                                        <input type="text" class="form-control" name="location" placeholder="e.g., New Delhi, India">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Description</label>
+                                        <textarea class="form-control" name="description" rows="3" placeholder="Describe your responsibilities and achievements"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-outline-primary add-item-btn" id="addExperience">
+                            <i class="fas fa-plus me-2"></i> Add Another Experience
+                        </button>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary prev-step"><i class="fas fa-arrow-left me-2"></i> Back</button>
+                        <button class="btn btn-primary next-step">Next: Education <i class="fas fa-arrow-right ms-2"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Education -->
+                <div class="resume-step" id="step3" style="display: none;">
+                    <div class="form-section">
+                        <h3>Education</h3>
+                        <p class="text-muted">Add your educational background, starting with the highest degree.</p>
+                        
+                        <div id="educationItems">
+                            <!-- Dynamic education items will be added here -->
+                            <div class="dynamic-form-item" id="education-1">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="mb-0">Education #1</h5>
+                                    <button type="button" class="btn-close remove-item" data-id="education-1"></button>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">School/University <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="school" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Degree <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" name="degree" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Field of Study</label>
+                                        <input type="text" class="form-control" name="fieldOfStudy">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Location</label>
+                                        <input type="text" class="form-control" name="location">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Start Date <span class="text-danger">*</span></label>
+                                        <input type="month" class="form-control" name="startDate" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">End Date</label>
+                                        <input type="month" class="form-control" name="endDate">
+                                        <div class="form-check mt-2">
+                                            <input class="form-check-input current-education" type="checkbox" name="currentEducation" id="currentEducation-1">
+                                            <label class="form-check-label" for="currentEducation-1">
+                                                I'm currently studying here
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">GPA (optional)</label>
+                                        <input type="text" class="form-control" name="gpa" placeholder="e.g., 3.8/4.0">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Description/Achievements</label>
+                                        <textarea class="form-control" name="description" rows="3" placeholder="Describe relevant coursework, achievements, or activities"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-outline-primary add-item-btn" id="addEducation">
+                            <i class="fas fa-plus me-2"></i> Add Another Education
+                        </button>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary prev-step"><i class="fas fa-arrow-left me-2"></i> Back</button>
+                        <button class="btn btn-primary next-step">Next: Skills & More <i class="fas fa-arrow-right ms-2"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Skills & More -->
+                <div class="resume-step" id="step4" style="display: none;">
+                    <div class="form-section">
+                        <h3>Skills</h3>
+                        <p class="text-muted">Add your key skills and competencies.</p>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Skills (comma-separated) <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="skills" placeholder="e.g., JavaScript, React, Node.js, Communication, Leadership" required>
+                            <div class="form-text">Add your skills separated by commas</div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Rate your top skills (optional)</label>
+                            <div id="skillRatings" class="mt-3">
+                                <!-- Skill ratings will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Languages</h3>
+                        <div id="languageItems">
+                            <!-- Dynamic language items will be added here -->
+                            <div class="dynamic-form-item" id="language-1">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h5 class="mb-0">Language #1</h5>
+                                    <button type="button" class="btn-close remove-item" data-id="language-1"></button>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Language</label>
+                                        <input type="text" class="form-control" name="language">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Proficiency</label>
+                                        <select class="form-select" name="proficiency">
+                                            <option value="Native">Native</option>
+                                            <option value="Fluent">Fluent</option>
+                                            <option value="Advanced">Advanced</option>
+                                            <option value="Intermediate">Intermediate</option>
+                                            <option value="Basic">Basic</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-outline-primary add-item-btn" id="addLanguage">
+                            <i class="fas fa-plus me-2"></i> Add Another Language
+                        </button>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3>Additional Sections (Optional)</h3>
+                        <div class="mb-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="addCertificates">
+                                <label class="form-check-label" for="addCertificates">Certifications</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="addProjects">
+                                <label class="form-check-label" for="addProjects">Projects</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="addVolunteer">
+                                <label class="form-check-label" for="addVolunteer">Volunteer Experience</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="addLinks">
+                                <label class="form-check-label" for="addLinks">Links & Profiles</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="addHobbies">
+                                <label class="form-check-label" for="addHobbies">Interests & Hobbies</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Certifications Section (Hidden by default) -->
+                        <div id="certificatesSection" class="mt-4" style="display: none;">
+                            <h4>Certifications</h4>
+                            <div id="certificateItems">
+                                <!-- Dynamic certificate items will be added here -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary add-item-btn" id="addCertificate">
+                                <i class="fas fa-plus me-2"></i> Add Certificate
+                            </button>
+                        </div>
+                        
+                        <!-- Projects Section (Hidden by default) -->
+                        <div id="projectsSection" class="mt-4" style="display: none;">
+                            <h4>Projects</h4>
+                            <div id="projectItems">
+                                <!-- Dynamic project items will be added here -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary add-item-btn" id="addProject">
+                                <i class="fas fa-plus me-2"></i> Add Project
+                            </button>
+                        </div>
+                        
+                        <!-- Links & Profiles Section (Hidden by default) -->
+                        <div id="linksSection" class="mt-4" style="display: none;">
+                            <h4>Links & Profiles</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">LinkedIn</label>
+                                    <input type="url" class="form-control" id="linkedinUrl" placeholder="https://linkedin.com/in/yourprofile">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">GitHub</label>
+                                    <input type="url" class="form-control" id="githubUrl" placeholder="https://github.com/yourusername">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Personal Website</label>
+                                    <input type="url" class="form-control" id="websiteUrl" placeholder="https://yourwebsite.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Other</label>
+                                    <input type="url" class="form-control" id="otherUrl" placeholder="https://example.com">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hobbies & Interests Section (Hidden by default) -->
+                        <div id="hobbiesSection" class="mt-4" style="display: none;">
+                            <h4>Interests & Hobbies</h4>
+                            <div class="mb-3">
+                                <label class="form-label">Interests & Hobbies (comma-separated)</label>
+                                <input type="text" class="form-control" id="hobbies" placeholder="e.g., Reading, Traveling, Photography, Chess">
+                                <div class="form-text">Add your interests/hobbies separated by commas</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary prev-step"><i class="fas fa-arrow-left me-2"></i> Back</button>
+                        <button class="btn btn-primary next-step">Next: Choose Template <i class="fas fa-arrow-right ms-2"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 5: Choose Template -->
+                <div class="resume-step" id="step5" style="display: none;">
+                    <div class="form-section">
+                        <h3>Choose a Template</h3>
+                        <p class="text-muted">Select a template that best represents your professional style.</p>
+                        
+                        <div class="row g-4 mt-2">
+                            <div class="col-md-4">
+                                <div class="card resume-template selected" data-template="professional">
+                                    <img src="../../assets/images/resume-template-1.jpg" class="card-img-top" alt="Professional Template">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Professional</h5>
+                                        <p class="card-text">A clean, traditional design suitable for most industries.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card resume-template" data-template="modern">
+                                    <img src="../../assets/images/resume-template-2.jpg" class="card-img-top" alt="Modern Template">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Modern</h5>
+                                        <p class="card-text">A contemporary design with a creative touch.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card resume-template" data-template="minimal">
+                                    <img src="../../assets/images/resume-template-3.jpg" class="card-img-top" alt="Minimal Template">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Minimal</h5>
+                                        <p class="card-text">A simple, elegant design focused on content.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h4>Customize Colors</h4>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Primary Color</label>
+                                    <input type="color" class="form-control form-control-color" id="primaryColor" value="#0d6efd" title="Choose primary color">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Font Style</label>
+                                    <select class="form-select" id="fontStyle">
+                                        <option value="default">Default</option>
+                                        <option value="serif">Serif</option>
+                                        <option value="sans-serif">Sans Serif</option>
+                                        <option value="monospace">Monospace</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <button class="btn btn-outline-secondary prev-step"><i class="fas fa-arrow-left me-2"></i> Back</button>
+                        <button class="btn btn-primary next-step">Next: Download <i class="fas fa-arrow-right ms-2"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Step 6: Preview & Download -->
+                <div class="resume-step" id="step6" style="display: none;">
+                    <div class="form-section">
+                        <h3>Review & Download</h3>
+                        <p class="text-muted">Review your resume and download it in your preferred format.</p>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i> Your resume has been generated based on the information you provided. Review it below and make any final adjustments before downloading.
+                        </div>
+                        
+                        <div class="text-center mt-4 mb-4">
+                            <button class="btn btn-success btn-lg download-btn" id="downloadPdf">
+                                <i class="fas fa-download me-2"></i> Download PDF
+                                <div class="download-spinner">
+                                    <div class="spinner-border text-light" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="btn btn-outline-primary btn-lg ms-2" id="downloadWord">
+                                <i class="fas fa-file-word me-2"></i> Download Word
+                            </button>
+                        </div>
+                        
+                        <hr class="mt-4 mb-4">
+                        
+                        <div class="text-center">
+                            <button class="btn btn-link" id="startOver">
+                                <i class="fas fa-redo me-2"></i> Start Over
+                            </button>
+                            <button class="btn btn-link" id="saveToAccount">
+                                <i class="fas fa-save me-2"></i> Save to My Account
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-start mt-4">
+                        <button class="btn btn-outline-secondary prev-step"><i class="fas fa-arrow-left me-2"></i> Back</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Resume Preview -->
+            <div class="col-lg-4">
+                <div class="sticky-top" style="top: 100px; z-index: 100;">
+                    <h4 class="mb-3">Preview</h4>
+                    <div class="resume-preview" id="resumePreview">
+                        <h1 id="previewName">Your Name</h1>
+                        <p id="previewTitle">Professional Title</p>
+                        <div class="contact-info">
+                            <span id="previewEmail">email@example.com</span> | 
+                            <span id="previewPhone">123-456-7890</span> | 
+                            <span id="previewLocation">City, State</span>
+                        </div>
+                        
+                        <h2>Profile</h2>
+                        <p id="previewProfile">A brief summary of your professional background and goals...</p>
+                        
+                        <h2>Work Experience</h2>
+                        <div id="previewExperience">
+                            <p class="text-muted">Add work experience to see it here</p>
+                        </div>
+                        
+                        <h2>Education</h2>
+                        <div id="previewEducation">
+                            <p class="text-muted">Add education to see it here</p>
+                        </div>
+                        
+                        <h2>Skills</h2>
+                        <div id="previewSkills">
+                            <p class="text-muted">Add skills to see them here</p>
+                        </div>
+                        
+                        <!-- Additional sections will be added dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold">ACHARYA PATH</h6>
+                    <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px">
+                    <p>
+                        Empowering education through technology. Connecting students, educators, and opportunities.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold">Resources</h6>
+                    <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px">
+                    <p><a href="#" class="text-white">Blog</a></p>
+                    <p><a href="#" class="text-white">Tutorials</a></p>
+                    <p><a href="#" class="text-white">FAQs</a></p>
+                    <p><a href="support.html" class="text-white">Support</a></p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold">Useful Links</h6>
+                    <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px">
+                    <p><a href="courses.html" class="text-white">Courses</a></p>
+                    <p><a href="events.html" class="text-white">Events</a></p>
+                    <p><a href="freelance.html" class="text-white">Freelance Jobs</a></p>
+                    <p><a href="community.html" class="text-white">Community</a></p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold">Contact</h6>
+                    <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px">
+                    <p><i class="fas fa-home mr-3"></i> New Delhi, India</p>
+                    <p><i class="fas fa-envelope mr-3"></i> info@acharyapath.com</p>
+                    <p><i class="fas fa-phone mr-3"></i> +91 1234567890</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2023 ACHARYA PATH. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- html2pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Initialize animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Dark mode toggle
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                const icon = this.querySelector('i');
+                if (document.body.classList.contains('dark-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+        }
+        
+        // Logout functionality
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // You would typically handle logout with an API call or clearing session storage
+                alert('Logging out...');
+                window.location.href = 'login.html';
+            });
+        }
+        
+        // Set username from localStorage if available
+        const userNameElement = document.getElementById('userName');
+        if (userNameElement) {
+            const savedUserName = localStorage.getItem('userName');
+            if (savedUserName) {
+                userNameElement.textContent = savedUserName;
+            }
+        }
+    </script>
+</body>
+</html> 
